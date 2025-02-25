@@ -10,3 +10,8 @@ export interface WidgetConfig {
     width: string
     height: string
 }
+
+export interface Tab {
+    name: string
+    id: number
+}

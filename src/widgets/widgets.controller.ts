@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { WidgetsService } from "./widgets.service";
-import { Widget } from "./interfaces/widget.interface";
+import { Tab, Widget } from "./interfaces/widget.interface";
+import { get } from "http";
 
 @Controller('widgets')
 export class WidgetsController {
@@ -11,6 +12,16 @@ export class WidgetsController {
   @Get(':id')
   getWidgets(@Param('id') id: number) {
     return this.widgetsService.getWidgets();
+  }
+
+  @Get('www/tabs')
+  getTabs() {
+    return this.widgetsService.getTabs();
+  }
+
+  @Post('www/tab') 
+  createTab(@Body() tab: Tab) {
+    return this.widgetsService.createTab(tab.name)
   }
 
   @Post()
