@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { WidgetsService } from "./widgets.service";
 import { Tab, Widget } from "./interfaces/widget.interface";
-import { get } from "http";
 
 @Controller('widgets')
 export class WidgetsController {
@@ -19,9 +18,15 @@ export class WidgetsController {
     return this.widgetsService.getTabs();
   }
 
-  @Post('www/tab') 
+  @Post('create/tab') 
   createTab(@Body() tab: Tab) {
     return this.widgetsService.createTab(tab.name)
+  }
+
+  @Post('update/tab') 
+  updateTab(@Body() tab: Tab) {
+    console.log('tab: ', tab)
+    return this.widgetsService.updateTab(tab)
   }
 
   @Post()

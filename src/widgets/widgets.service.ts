@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Tab, Widget } from "./interfaces/widget.interface";
+import { log } from "console";
 
 @Injectable()
 export class WidgetsService {
@@ -19,6 +20,12 @@ export class WidgetsService {
         let tab = { id: this.tabs.length + 1, name: tabName } as Tab
         this.tabs.push(tab);
         return tab;
+    }
+
+    updateTab(newTab: Tab) {
+        let index = this.tabs.findIndex(tab => tab.id === newTab.id);
+        this.tabs[index].name = newTab.name
+        return this.tabs[index];
     }
 
     updateWidgets(widgets: Widget[]): Widget[] {
