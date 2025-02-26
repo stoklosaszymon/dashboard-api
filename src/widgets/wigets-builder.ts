@@ -31,4 +31,9 @@ export class WidgetsBuilder {
     build() {
         return this.widget as Widget
     }
+
+    withDasboard(id: number) {
+        this.widget.dashboardId = id;
+        return this;
+    }
 }

@@ -22,11 +22,16 @@ describe('CatsController', () => {
         it('should return an array of widgets', async () => {
             let builder = new WidgetsBuilder();
             const result = [
-                builder.withId(1).withName('test').withComponent('_test').withConfig({ width: '100px', height: '100px' }).build()
+                builder.withId(1)
+                       .withName('test')
+                       .withComponent('_test')
+                       .withConfig({ width: '100px', height: '100px' })
+                       .withDasboard(1)
+                       .build()
             ];
             jest.spyOn(widgetsService, 'getWidgets').mockImplementation(() => result);
 
-            expect(await widgetsController.getWidgets()).toBe(result);
+            expect(await widgetsController.getWidgets(1)).toBe(result);
         });
 
         it('should update widgets', async () => {
