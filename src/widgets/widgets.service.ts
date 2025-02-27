@@ -8,8 +8,12 @@ export class WidgetsService {
     private widgets: Widget[] = [];
     private tabs: Tab[] = [ {id: 1, name: 'New Tab'}]
 
-    getWidgets(): Widget[] {
-        return this.widgets;
+    getWidgets(id: number): Widget[] {
+        if (id != 0) {
+            return this.widgets.filter(widget => widget.dashboardId == id);
+        } else {
+            return this.widgets
+        }
     }
 
     getTabs() {
@@ -29,7 +33,7 @@ export class WidgetsService {
     }
 
     updateWidgets(widgets: Widget[]): Widget[] {
-        this.widgets = widgets;
+        this.widgets = [ ...this.widgets.filter(widget => widget.dashboardId != widgets[0].dashboardId), ...widgets];
         return widgets
     }
 }

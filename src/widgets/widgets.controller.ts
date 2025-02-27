@@ -10,7 +10,7 @@ export class WidgetsController {
 
   @Get(':id')
   getWidgets(@Param('id') id: number) {
-    return this.widgetsService.getWidgets();
+    return this.widgetsService.getWidgets(id);
   }
 
   @Get('www/tabs')
@@ -25,13 +25,12 @@ export class WidgetsController {
 
   @Post('update/tab') 
   updateTab(@Body() tab: Tab) {
-    console.log('tab: ', tab)
     return this.widgetsService.updateTab(tab)
   }
 
   @Post()
   updateWidgets(@Body() widgets: Widget[]) {
     this.widgetsService.updateWidgets(widgets)
-    return this.widgetsService.getWidgets();
+    return widgets
   }
 }
