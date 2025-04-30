@@ -31,6 +31,12 @@ export class WidgetsController {
   @Post()
   updateWidgets(@Body() widgets: Widget[]) {
     this.widgetsService.updateWidgets(widgets)
-    return widgets
+    return widgets;
+  }
+
+  @Post('widget')
+  updateWidget(@Body() widget: Widget) {
+    console.log('w: ', widget);
+    return this.widgetsService.updateWidget(widget);
   }
 }

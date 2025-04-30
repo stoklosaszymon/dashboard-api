@@ -4,9 +4,8 @@ import { log } from "console";
 
 @Injectable()
 export class WidgetsService {
-
     private widgets: Widget[] = [];
-    private tabs: Tab[] = [ {id: 1, name: 'New Tab'}]
+    private tabs: Tab[] = [{ id: 1, name: 'New Tab' }]
 
     getWidgets(id: number): Widget[] {
         if (id != 0) {
@@ -33,7 +32,14 @@ export class WidgetsService {
     }
 
     updateWidgets(widgets: Widget[]): Widget[] {
-        this.widgets = [ ...this.widgets.filter(widget => widget.dashboardId != widgets[0].dashboardId), ...widgets];
+        this.widgets = [...this.widgets.filter(widget => widget.dashboardId != widgets[0].dashboardId), ...widgets];
         return widgets
     }
+
+  updateWidget(widget: Widget): Widget {
+    let widgetToUpdate = this.widgets.filter( (w) => w.id == widget.id);
+    console.log('wtu: ', widgetToUpdate)
+    widgetToUpdate[0].config = widget.config;
+    return widgetToUpdate[0];
+  }
 }
